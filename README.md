@@ -50,26 +50,30 @@ C++ Practice/
 │   ├── Sorts
 │   └── Stack
 │
-└── OOPs
-    ├── Array
-    ├── Class & Object
-    ├── Constructor & Destructor
-    ├── Dynamic Memory
-    ├── Inheritance
-    │   ├── Hierarchical
-    │   ├── Hybrid
-    │   ├── Multilevel
-    │   ├── Multiple
-    │   └── Single
-    ├── Matrix
-    ├── Number System
-    ├── Operator OverLoading
-    ├── Polymorphism
-    └── Static, Inline & Friend
-        ├── Friend Class
-        ├── Friend Function
-        ├── Inline Function
-        └── Static Function
+├── OOPs
+│   ├── Array
+│   ├── Class & Object
+│   ├── Constructor & Destructor
+│   ├── Dynamic Memory
+│   ├── Inheritance
+│   │   ├── Hierarchical
+│   │   ├── Hybrid
+│   │   ├── Multilevel
+│   │   ├── Multiple
+│   │   └── Single
+│   ├── Matrix
+│   ├── Number System
+│   ├── Operator OverLoading
+│   ├── Polymorphism
+│   └── Static, Inline & Friend
+│       ├── Friend Class
+│       ├── Friend Function
+│       ├── Inline Function
+│       └── Static Function
+│
+└── Java
+    ├── Palindrome
+    ├── AmrStrong 
 ```
 
 ---
