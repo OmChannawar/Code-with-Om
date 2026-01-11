@@ -19,14 +19,16 @@
         • Additional memory needed for pointer fields
 
     --------------------------------------------------------------------
-    ⚙️ Supported Operations
+    ⚙️ Supported Operations:
         1. Insert at front
         2. Insert at back
         3. Insert at a specific position
         4. Delete from front
         5. Delete from back
-        6. Reverse the list
-        7. Display all nodes
+        6. Delete from a specific position
+        7. Search for an element
+        8. Reverse the list
+        9. Display all nodes
 
     NOTE:
     Since no tail pointer is used, operations involving the end of the list
@@ -53,7 +55,7 @@ public:
     }
 };
 
-// Singly Linked List (no tail pointer)
+// Singly Linked List
 class List
 {
     Node *head;
@@ -65,8 +67,7 @@ public:
     }
 
     // Insert at front
-    // Time: O(1)
-    // Space: O(1)
+    // Time: O(1), Space: O(1)
     void push_front(int val)
     {
         Node *newNode = new Node(val);
@@ -77,8 +78,7 @@ public:
     }
 
     // Insert at back
-    // Time: O(n)
-    // Space: O(1)
+    // Time: O(n), Space: O(1)
     void push_back(int val)
     {
         Node *newNode = new Node(val);
@@ -99,9 +99,8 @@ public:
         cout << ">>> " << val << " inserted at back" << endl;
     }
 
-    // Insert at given position (0-based)
-    // Time: O(n)
-    // Space: O(1)
+    // Insert at position (0-based)
+    // Time: O(n), Space: O(1)
     void push_position(int val, int pos)
     {
         if (pos < 0)
@@ -127,18 +126,21 @@ public:
             temp = temp->next;
         }
 
-        Node *newNode = new Node(val);
-        newNode->next = (temp ? temp->next : NULL);
+        if (temp == NULL)
+        {
+            cout << ">>> Invalid Position" << endl;
+            return;
+        }
 
-        if (temp)
-            temp->next = newNode;
+        Node *newNode = new Node(val);
+        newNode->next = temp->next;
+        temp->next = newNode;
 
         cout << ">>> " << val << " inserted at position " << pos << endl;
     }
 
     // Delete front node
-    // Time: O(1)
-    // Space: O(1)
+    // Time: O(1), Space: O(1)
     void pop_front()
     {
         if (head == NULL)
@@ -155,8 +157,7 @@ public:
     }
 
     // Delete last node
-    // Time: O(n)
-    // Space: O(1)
+    // Time: O(n), Space: O(1)
     void pop_back()
     {
         if (head == NULL)
@@ -183,9 +184,70 @@ public:
         cout << ">>> Last element deleted" << endl;
     }
 
+    // Delete at position (0-based)
+    // Time: O(n), Space: O(1)
+    void delete_position(int pos)
+    {
+        if (head == NULL || pos < 0)
+        {
+            cout << ">>> Invalid Position" << endl;
+            return;
+        }
+
+        if (pos == 0)
+        {
+            pop_front(); // reuse logic
+            return;
+        }
+
+        Node *temp = head;
+        for (int i = 0; i < pos - 1; i++)
+        {
+            if (temp->next == NULL)
+            {
+                cout << ">>> Invalid Position" << endl;
+                return;
+            }
+            temp = temp->next;
+        }
+
+        Node *del = temp->next;
+        if (del == NULL)
+        {
+            cout << ">>> Invalid Position" << endl;
+            return;
+        }
+
+        temp->next = del->next;
+        delete del;
+
+        cout << ">>> Node deleted at position " << pos << endl;
+    }
+
+    // Search element
+    // Time: O(n), Space: O(1)
+    int search(int key)
+    {
+        Node *temp = head;
+        int index = 0;
+
+        while (temp != NULL)
+        {
+            if (temp->data == key)
+            {
+                cout << ">>> " << key << " found at position " << index << endl;
+                return index;
+            }
+            temp = temp->next;
+            index++;
+        }
+
+        cout << ">>> " << key << " not found" << endl;
+        return -1;
+    }
+
     // Display list
-    // Time: O(n)
-    // Space: O(1)
+    // Time: O(n), Space: O(1)
     void display()
     {
         if (head == NULL)
@@ -204,8 +266,7 @@ public:
     }
 
     // Reverse list
-    // Time: O(n)
-    // Space: O(1)
+    // Time: O(n), Space: O(1)
     void reverse()
     {
         Node *curr = head;
@@ -221,7 +282,6 @@ public:
         }
 
         head = prev;
-
         cout << ">>> List reversed" << endl;
     }
 };
@@ -230,24 +290,26 @@ public:
 int main()
 {
     List ll;
-    int choice, val, pos;
+    int ch, val, pos;
 
     while (true)
     {
-        cout << "\nSingly Linked List Operations\n";
+        cout << "\n--- Singly Linked List Menu ---\n";
         cout << "1. Insert at Front\n";
         cout << "2. Insert at Back\n";
         cout << "3. Insert at Position\n";
         cout << "4. Delete Front\n";
         cout << "5. Delete Back\n";
-        cout << "6. Reverse List\n";
-        cout << "7. Display\n";
-        cout << "8. Exit\n";
+        cout << "6. Delete at Position\n";
+        cout << "7. Search\n";
+        cout << "8. Reverse List\n";
+        cout << "9. Display\n";
+        cout << "10. Exit\n";
 
-        cout << "Enter your choice: ";
-        cin >> choice;
+        cout << "Enter choice: ";
+        cin >> ch;
 
-        switch (choice)
+        switch (ch)
         {
         case 1:
             cout << "Enter value: ";
@@ -276,14 +338,26 @@ int main()
             break;
 
         case 6:
-            ll.reverse();
+            cout << "Enter position: ";
+            cin >> pos;
+            ll.delete_position(pos);
             break;
 
         case 7:
-            ll.display();
+            cout << "Enter value to search: ";
+            cin >> val;
+            ll.search(val);
             break;
 
         case 8:
+            ll.reverse();
+            break;
+
+        case 9:
+            ll.display();
+            break;
+
+        case 10:
             cout << "Exiting..." << endl;
             return 0;
 
