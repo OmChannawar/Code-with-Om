@@ -166,7 +166,7 @@ If you have suggestions, optimizations, or want to share better approaches — f
 ## 📬 Connect With Me
 
 - 💼 **GitHub:** [Om Channawar](https://github.com/OmChannawar)  
-- 🌐 **LinkedIn:** [Om Channawar](https://www.linkedin.com/in/om-channawar-466873312)   
+- 🌐 **LinkedIn:** [Om Channawar](https://www.linkedin.com/in/om-channawar-466873312)
 
 ---
 
