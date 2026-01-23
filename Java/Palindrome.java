@@ -1,6 +1,4 @@
-package Java;
-
-import java.util.Scanner;
+import java.util.*;
 
 public class Palindrome {
     public static void main(String[] args) {
